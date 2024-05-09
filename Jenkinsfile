@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'Stage 1: Build - Use tools like Maven or Gradle to compile and package the code.'
+        echo 'Stage 1: Build - Use tools like Maven to compile and package the code.'
       }
     }
 
