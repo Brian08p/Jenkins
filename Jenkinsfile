@@ -40,7 +40,7 @@ pipeline {
 
     stage('Deploy to Production') {
       steps {
-        echo 'Stage 7: Deploy to Production - Deploy to production server using Ansible or Jenkins Deploy Plugin.'
+        echo 'Stage 7: Deploy to Production - Deploy to a production server using Ansible or Jenkins Deploy Plugin.'
       }
     }
   }
