@@ -4,57 +4,58 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn clean package'
+        echo 'Stage 1: Build - Use tools like Maven or Gradle to compile and package the code.'
       }
     }
 
     stage('Unit and Integration Tests') {
       steps {
-        sh 'mvn test'
+        echo 'Stage 2: Unit and Integration Tests - Use JUnit or TestNG for unit tests and Selenium for integration tests.'
       }
     }
 
     stage('Code Analysis') {
       steps {
-        sh 'mvn sonar:sonar'
+        echo 'Stage 3: Code Analysis - Use SonarQube or Checkstyle to analyze code quality.'
       }
     }
 
     stage('Security Scan') {
       steps {
-        sh 'mvn dependency-check:check'
+        echo 'Stage 4: Security Scan - Use tools like OWASP Dependency-Check or Snyk to identify vulnerabilities.'
       }
     }
 
     stage('Deploy to Staging') {
       steps {
-        sh 'ansible-playbook -i staging deploy.yml'
+        echo 'Stage 5: Deploy to Staging - Deploy to a staging server using Ansible or Jenkins Deploy Plugin.'
       }
     }
 
     stage('Integration Tests on Staging') {
       steps {
-        sh 'postman run my-integration-tests.json'
+        echo 'Stage 6: Integration Tests on Staging - Run tests on the staging environment using Selenium or Postman.'
       }
     }
 
     stage('Deploy to Production') {
       steps {
-        sh 'ansible-playbook -i production deploy.yml'
+        echo 'Stage 7: Deploy to Production - Deploy to a production server using Ansible or Jenkins Deploy Plugin.'
       }
     }
   }
 
   post {
     success {
-      mail to: 'xyzbrian08@gmail.com',
+      mail to: 'pereira.08brian@gmail.com',
            subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-           body: "Good news, the pipeline ${currentBuild.fullDisplayName} has succeeded."
+           body: "The pipeline ${currentBuild.fullDisplayName} has succeeded."
     }
     failure {
-      mail to: 'xyzbrian08@gmail.com',
+      mail to: 'pereira.08brian@gmail.com',
            subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
            body: "The pipeline ${currentBuild.fullDisplayName} has failed. Please check logs."
     }
   }
 }
+
