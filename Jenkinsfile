@@ -5,11 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    try {
-                        bat "echo Stage 1: Build - Use tool like Maven to compile and package the code. > build.log"
-                    } catch (Exception e) {
-                        echo "Failed to execute batch command: ${e.getMessage()}"
-                    }
+                    bat "echo Stage 1: Build - Use tool like Maven to compile and package the code. > build.log"
                 }
             }
         }
