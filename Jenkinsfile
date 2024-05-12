@@ -46,16 +46,14 @@ pipeline {
   }
 
   post {
-    success {
-      mail to: 'pereira.08brian@gmail.com',
-           subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-           body: "The pipeline ${currentBuild.fullDisplayName} has succeeded."
+        always {
+            emailext(
+                to: 'pereira.08brian@gmail.com',
+                subject: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build #${env.BUILD_NUMBER}",
+                body: "The pipeline ${currentBuild.fullDisplayName} has ${currentBuild.currentResult}. Please see attached logs.",
+                attachmentsPattern: "build.log"
+            )
+        }
     }
-    failure {
-      mail to: 'pereira.08brian@gmail.com',
-           subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
-           body: "The pipeline ${currentBuild.fullDisplayName} has failed. Please check logs."
-    }
-  }
 }
 
